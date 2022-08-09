@@ -1,0 +1,38 @@
+import FigAbstract from '../assets/fig-abstract.webp'
+import AbstractFigure from '../components/AbstractFigure'
+import JournalLink from '../components/JournalLink'
+import ResultsFig from '../assets/mic-results.webp'
+import MeshGenFig from '../assets/mic-mesh-gen.webp'
+import ScannerAndRender from '../assets/mic-scan-and-render.webp'
+import PlanarHomgFig from '../assets/mic-planar-homg.webp'
+import CenteredFigure from '../components/CenteredFigure'
+import RowFigureWrapper from '../components/RowFigureWrapper'
+
+## Elimination of Reflections in Laser Scanner Systems by using Convolutional Neural Networks
+<JournalLink journal="MIC Journal" link="https://www.mic-journal.no/ABS/MIC-2022-1-2.asp/" />
+
+<AbstractFigure image={FigAbstract} />
+
+### Abstract
+This paper presents a machine learning approach for eliminating reflections in line laser scanning of
+aluminium workpieces to be welded. The elimination of reflections is important to obtain accurate laser
+scanning of workpiece geometry for highly reflective materials like aluminium. The proposed solution is
+to use a convolutional neural network (CNN) which is trained to eliminate the reflections. The training
+of the network is done by simulating the laser line of the scanner in ray-tracing software using aluminium
+surfaces with appropriate reflection properties. This CNN then recovers the reflected laser line by removing
+the reflections. The CNN is used with two different camera configurations. In the first configuration one
+camera and one laser scanner are used. In the second configuration two cameras are used in a stereo
+arrangement in combination with the line laser. In this case, the planar homography of the laser plane
+is used to detect possible points on the laser line in a preprocessing step. The high performance of the
+solution is demonstrated for simulated data.
+
+### Approach overview
+<RowFigureWrapper>
+    <CenteredFigure image={MeshGenFig} width={300} />
+    <CenteredFigure image={ScannerAndRender} width={200} />
+    <CenteredFigure image={PlanarHomgFig} width={400} />
+</RowFigureWrapper>
+
+
+### Results
+<AbstractFigure image={ResultsFig} />

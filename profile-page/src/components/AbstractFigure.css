@@ -1,0 +1,14 @@
+.AbstractFigure {
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.AbstractImage {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
