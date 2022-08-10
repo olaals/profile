@@ -33,6 +33,26 @@ solution is demonstrated for simulated data.
     <CenteredFigure image={PlanarHomgFig} width={400} />
 </RowFigureWrapper>
 
+The approach consists of three main steps, mesh generation, rendering and network training. Meshes are generated proceduraly by using CadQuery 
+to generate unique geometries for each workpiece. The generated meshes are rendered in Blender with laser scanner system creating realistic lighting
+and reflections. We simulate a band-pass filter attached to the camera of the scanner by only rendering the light from the laser. The ground truth 
+is generated for each sample, by disabling refections. The renders are split up to a train, validation and test set, in which we train and evaluate
+a U-Net network to filter the reflections and generate images without reflections. 
 
-### Results
+We compare two methods, using a single camera laser scanner and a stereo camera laser system. A pre-processing method is proposed for the stereo camera laser scanner,
+combining the two views from each camera such that the same spatial location of the laser line appear at the same pixel positions. This is done by using the planar homography of the laser plane, 
+which can be determined by the geometric relationship between the two cameras and the laser. The pre-processing step makes the input more suitable for processing by a convolutional neural network,
+since related data from both views are close to eachother in one image. This also enables the network to be independent of the camera-laser geometric configuration, such that the same network can
+be used on stereo camera scanners with different angles and baseline distance between the cameras and laser.
+
+
+
+
+
+### Qualitative Results
 <AbstractFigure image={ResultsFig} />
+We classify the types of reflections in three categories depending on the material used. Specular reflection stems from very reflective materials, which makes reflections of the laser line sharp.
+Blurry reflections of the laser line stems from material which are less reflective, making the reflections spread out and appear blurred. The third type of material used are 
+from a set of preconfigured materials which also include artefacts such as rust. The PBR test set have varying degree of reflectivity, causing both specular reflections and blurry reflections.
+Examples from the test set are shown in the figure above for the three different reflection types. The results indicate that the network is able to recover the true laser line to a great extent.
+Further work includes testing the method on real data, enabling welding on aluminium workpieces.
